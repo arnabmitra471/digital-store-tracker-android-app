@@ -1,20 +1,32 @@
 package com.example.digitalstoretracker;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 public class ProductListActivity extends AppCompatActivity {
 
     ListView productList;
+    Button addProductBtn;
+    Activity context;
     ArrayList<ProductModel> allProducts = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +60,38 @@ public class ProductListActivity extends AppCompatActivity {
 
         ProductListAdapter adapter = new ProductListAdapter(this,allProducts);
         productList.setAdapter(adapter);
+
+        addProductBtn = findViewById(R.id.addProductBtn);
+        addProductBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProductListActivity.this);
+                LayoutInflater alertLayoutInflater = LayoutInflater.from(ProductListActivity.this);
+                View alertDialogView = alertLayoutInflater.inflate(R.layout.add_product_alert_dialog,null);
+
+                builder.setView(alertDialogView);
+
+                // configuring the positive button of the alertDialog
+                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText productNameInp = alertDialogView.findViewById(R.id.productNameInp);
+                        EditText productPriceInp = alertDialogView.findViewById(R.id.productPriceInp);
+                        EditText productQtyInp = alertDialogView.findViewById(R.id.productQtyInp);
+
+                        String product_name = productNameInp.getText().toString().trim();
+                        String product_price = productPriceInp.getText().toString().trim();
+                        String product_qty = productQtyInp.getText().toString().trim();
+
+                        if(product_name.isEmpty() || product_price.isEmpty() || product_qty.isEmpty())
+                        {
+                            Toast.makeText(ProductListActivity.this,"All fields are required",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+
+            }
+        });
     }
 }

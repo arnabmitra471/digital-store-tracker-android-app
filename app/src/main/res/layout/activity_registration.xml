@@ -14,7 +14,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id= "@+id/reg_linear_layout">
 
         <TextView
             android:id="@+id/textView3"
