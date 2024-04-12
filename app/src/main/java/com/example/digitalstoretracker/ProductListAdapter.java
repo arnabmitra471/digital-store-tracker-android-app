@@ -28,13 +28,17 @@ public class ProductListAdapter extends ArrayAdapter<ProductModel> {
         if(view == null)
         {
             LayoutInflater inflater = context.getLayoutInflater();
-            View rowView = inflater.inflate(R.layout.custom_product_listview,parent,true);
+            view = inflater.inflate(R.layout.custom_product_listview,parent,false);
 
-            TextView product_name = rowView.findViewById(R.id.product_name);
-            TextView product_price = rowView.findViewById(R.id.product_price);
-            TextView product_quantity = rowView.findViewById(R.id.product_quantity);
+            TextView product_name = view.findViewById(R.id.product_name);
+            TextView product_price = view.findViewById(R.id.product_price);
+            TextView product_quantity = view.findViewById(R.id.product_quantity);
 
+            product_name.setText(allProducts.get(position).getProduct_name());
+            product_price.setText(allProducts.get(position).getProduct_price());
+            product_quantity.setText(allProducts.get(position).getProduct_quantity());
 
         }
+        return view;
     }
 }
