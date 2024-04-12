@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DigitalStoreTracker</string>
+    <string name="login_email">Enter your email</string>
+    <string name="login_pass">Enter your password</string>
+    <string name="reg_page_ques">Already registered ?</string>
+    <string name="add_product_tooltip">Add Product</string>
+</resources>
