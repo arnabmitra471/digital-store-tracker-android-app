@@ -25,10 +25,10 @@ public class ProductListAdapter extends ArrayAdapter<ProductModel> {
     @Override
     public View getView(int position, View view, @NonNull ViewGroup parent)
     {
-        if(view == null)
-        {
+        if(view == null) {
             LayoutInflater inflater = context.getLayoutInflater();
-            view = inflater.inflate(R.layout.custom_product_listview,parent,false);
+            view = inflater.inflate(R.layout.custom_product_listview, parent, false);
+        }
 
             TextView product_name = view.findViewById(R.id.product_name);
             TextView product_price = view.findViewById(R.id.product_price);
@@ -38,7 +38,6 @@ public class ProductListAdapter extends ArrayAdapter<ProductModel> {
             product_price.setText(allProducts.get(position).getProduct_price());
             product_quantity.setText(allProducts.get(position).getProduct_quantity());
 
-        }
         return view;
     }
 }
